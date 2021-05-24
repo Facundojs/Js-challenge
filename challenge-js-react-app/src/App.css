@@ -1,0 +1,37 @@
+#app-div-container{
+  background-image: url("./react-node-1024x608.png") ;
+}
+.margin-auto{
+  margin: auto;
+}
+.pointer{
+  cursor: pointer;
+}
+.validations{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0;
+  margin: auto;
+}
+.centered{
+  text-align: center;
+  margin: auto;
+}
+.newOp{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+.Entry{
+  color: green;
+}
+.Egress{
+  color:red
+}
+.type-id{
+  font-weight: 600;
+}
