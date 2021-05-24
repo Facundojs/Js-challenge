@@ -28,78 +28,56 @@ export default function OperationsTable({ operationsData, operationsTotal }) {
     } else {
         return (
             <>
-                <div className="table-container table-responsive">
-                    <div className="container table-header">
-                        <div className="row">
-                            <div className="col">
-                                ID
-                            </div>
-                            <div className="col-5">
-                                Concept
-                            </div>
-                            <div className="col">
-                                Mount
-                            </div>
-                            <div className="col">
-                                Type
-                            </div>
-                            <div className="col">
-                                Modify
-                            </div>
-                            <div className="col">
-                                Delete
-                            </div>
-                        </div>
-                    </div>
-                    <hr />
-                    {
-                        operationsData &&
-                        operationsData.map((element, i) => {
-                            return (
-                                <div key={i} className="container mt-3 mb-3">
-                                    <div className="row">
-                                        <div className="col">
-                                            {element.id}
-                                        </div>
-                                        <div className="col-5">
-                                            {element.concept}
-                                        </div>
-                                        <div className="col">
-                                            {element.mount}
-                                        </div>
-                                        <div className={`col type-id ${element.typeId}`}>
-                                            {element.typeId}
-                                        </div>
-                                        <div className="col">
-                                            <b className="pointer" id={`${element.id}`}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Concept</th>
+                                <th scope="col">Mount</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Delete</th>
+                                <th scope="col">Modify</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {operationsData &&
+                                operationsData.map((elemento) => {
+                                    return (
+                                        <tr>
+                                            <th scope="row">{ elemento.id }</th>
+                                            <td>{ elemento.concept }</td>
+                                            <td>{ elemento.mount }</td>
+                                            <td className={elemento.typeId}>{ elemento.typeId }</td>
+                                            <td>
+                                                <b className="pointer" id={`${elemento.id}`}
                                                 onClick={
                                                     function(e){
                                                         deleteOne(e.target.id, DELETE_URL)
                                                     }
                                                 }
-                                            >
+                                                >
                                                 <i className="fa fa-trash" aria-hidden="true"
-                                                    id={`${element.id}`}
+                                                    id={`${elemento.id}`}
                                                 ></i>
-                                            </b>
-                                        </div>
-                                        <div className="col">
+                                                </b>
+                                            </td>
+                                            <td>
                                             <Link
-                                                to={`/modifyoperation/${element.id}`}
-                                                id={`${element.id}`}
+                                                to={`/modifyoperation/${elemento.id}`}
+                                                id={`${elemento.id}`}
                                                 className="pointer"
-                                            ><i className="fa fa-pen" id={`${element.id}`} aria-hidden="true"></i></Link>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
-                    <hr />
-                    <h3>Total: <b>{ operationsTotal }</b></h3>
-                    <div className="w-75 centered"></div>
+                                            ><i className="fa fa-pen" id={`${elemento.id}`} aria-hidden="true"></i></Link>
+                                            </td>
+                                        </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
                 </div>
+                <hr />
+                <h3>Total: <b>{ operationsTotal }</b></h3>
+                <div className="w-75 centered"></div>
             </>
         )
     }

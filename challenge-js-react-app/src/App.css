@@ -35,3 +35,6 @@
 .type-id{
   font-weight: 600;
 }
+.tabla-responsiva{
+  overflow-x:auto
+}
