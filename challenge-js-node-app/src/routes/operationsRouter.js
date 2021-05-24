@@ -9,7 +9,7 @@ router.get('/', operationsController.all)
 // CRUD
 router.post('/all', operationsController.all);
 router.post('/new', storeValidations, operationsController.store);
-router.post('/lastoperations', storeValidations, operationsController.lastOps);
+router.post('/lastoperations', operationsController.lastOps);
 router.put('/update', operationsController.update);
 router.delete('/delete', operationsController.destroy);
 

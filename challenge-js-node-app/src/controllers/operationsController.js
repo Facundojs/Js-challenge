@@ -56,8 +56,6 @@ module.exports = {
                 where: {
                     userId: req.body.id
                 },
-                order: ['id', 'DESC'],
-                limit: 10
             })
             if (operations) {
                 res.json(operations)
@@ -71,11 +69,14 @@ module.exports = {
         }
     },
     lastOps: async (req, res) => {
+        console.log('LAST OP');
         try {
             const operations = await db.Operation.findAll({
                 where: {
                     userId: req.body.id
-                }
+                },
+                limit: 10,
+                order: [['id', 'DESC']]
             })
             if (operations) {
                 let accum = 0;
