@@ -64,26 +64,26 @@ export default function Register() {
                 }}
             >
                 <h1 className="mb-4">Register</h1>
-                <div className="form-floating mb-3 margin-auto w-50">
+                <div className="form-floating m-3 margin-auto w-50">
                     <input ref={user_name} type="text" className="form-control" id="floatingInput"
                         placeholder="First name" />
                     <label htmlFor="floatingInput">First name</label>
                 </div>
-                <div className="form-floating mb-3 margin-auto w-50">
+                <div className="form-floating m-3 margin-auto w-50">
                     <input ref={user_surname} type="text" className="form-control" id="floatingInput" placeholder="Mypassword"/>
                     <label htmlFor="floatingInput">Last name</label>
                 </div>
-                <div className="form-floating mb-3 margin-auto w-50">
+                <div className="form-floating m-3 margin-auto w-50">
                     <input ref={user_email} type="email" className="form-control" id="floatingInput" placeholder="name@example.com"/>
                     <label htmlFor="floatingInput">Email address</label>
                 </div>
-                <div className="form-floating mb-3 margin-auto w-50">
+                <div className="form-floating m-3 margin-auto w-50">
                     <input ref={user_password} type="password" className="form-control" id="floatingInput" placeholder="Mypassword"/>
                     <label htmlFor="floatingInput">Password</label>
                 </div>
                 {
                     (registerErrors.errors &&
-                        <div className="container w-50 mx-0 mt-3 validations alert alert-danger">
+                        <div className="container w-50 mx-0 m-3 validations alert alert-danger">
                         
                         {registerErrors.errors.map((err, key) => {
                             console.log('ERRORS EN MAP');
@@ -97,7 +97,7 @@ export default function Register() {
                 {
                     (connectionError &&
                         (
-                        <div className="container w-50 mx-0 mt-3 validations alert alert-danger">
+                        <div className="container w-50 mx-0 m-3 alert alert-danger">
                             {connectionError}
                         </div>
                         )
