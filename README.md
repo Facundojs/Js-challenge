@@ -1,6 +1,6 @@
 # Para utilizar el pryecto deberás seguir los siguientes pasos
 
-`git clone "repositorio`
+`git clone https://github.com/Facundojs/Js-challenge/`
 
 
 ## Node app (Backend)
