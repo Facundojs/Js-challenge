@@ -28,7 +28,7 @@ module.exports = {
       },
       concept: Sequelize.STRING,
       mount: Sequelize.INTEGER,
-      date: Sequelize.DATE,
+      date: Sequelize.DATEONLY,
     });
   },
 

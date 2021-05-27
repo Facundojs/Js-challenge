@@ -36,6 +36,7 @@ export default function OperationsTable({ operationsData, operationsTotal }) {
                                 <th scope="col">Concept</th>
                                 <th scope="col">Mount</th>
                                 <th scope="col">Type</th>
+                                <th scope="col">Date</th>
                                 <th scope="col">Delete</th>
                                 <th scope="col">Modify</th>
                             </tr>
@@ -49,6 +50,7 @@ export default function OperationsTable({ operationsData, operationsTotal }) {
                                             <td>{ elemento.concept }</td>
                                             <td>{ elemento.mount }</td>
                                             <td className={elemento.typeId}>{ elemento.typeId }</td>
+                                            <td>{ elemento.date }</td>
                                             <td>
                                                 <b className="pointer" id={`${elemento.id}`}
                                                 onClick={

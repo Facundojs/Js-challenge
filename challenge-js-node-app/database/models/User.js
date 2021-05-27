@@ -25,10 +25,6 @@ module.exports = function (Sequelize, DataTypes) {
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
-        avatar: {
-            type: DataTypes.STRING,
-            default: 'default.jpg'
         }
     }
     let config = {

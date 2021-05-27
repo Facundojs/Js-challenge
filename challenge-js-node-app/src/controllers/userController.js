@@ -73,7 +73,6 @@ module.exports = {
                     password
                 } = req.body;
                 const existInDb = await db.User.findOne({ where: { email } });
-                const avatar = req.file ? req.file.originalName : 'default.jpg';
                 if (existInDb) {
                     res.json({
                         error:{
@@ -85,8 +84,7 @@ module.exports = {
                         first_name,
                         last_name,
                         email,
-                        password,
-                        avatar
+                        password
                     })
                         .then((user) => {
                         delete user.dataValues.password

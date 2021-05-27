@@ -11,17 +11,19 @@ export default function ModifyOperation(props) {
     const mount = useRef();
     const date = useRef();
     const userCookie = cookies.get('userLogged');
+    const userCookieId = userCookie.id;
     useEffect(() => {
         if (!userCookie) {
             window.location.href = '/';
         }
     })
     useEffect(() => {
-        oldData(urlOpId, GET_OLD_DATA_URL);
+        oldData(urlOpId,userCookieId, GET_OLD_DATA_URL);
     }, [urlOpId])
-    async function oldData(id, url) {
+    async function oldData(operationId, userId, url) {
         const body = JSON.stringify({
-            id
+            id: operationId,
+            userId: userId
         });
         const fetchConfig = {
             method: "POST",
@@ -33,8 +35,14 @@ export default function ModifyOperation(props) {
         };
         const fetchRes = await fetch(url, fetchConfig);
         const fetchItem = await fetchRes.json();
-        concept.current.value = fetchItem.operation.concept;
-        mount.current.value = fetchItem.operation.mount;
+        console.log(fetchItem.msg);
+        if (fetchItem.msg === "You are able to acces this op") {
+            concept.current.value = fetchItem.operation.concept;
+            mount.current.value = fetchItem.operation.mount;
+        } else {
+            alert(fetchItem.msg)
+            window.location.href = '/'
+        }
     }
     async function apiUpdate(opId, concept, mount, date, fetchUrl) {
         const body = JSON.stringify({

@@ -10,7 +10,7 @@ module.exports = function (Sequelize, DataTypes) {
         typeId: DataTypes.INTEGER,
         concept: DataTypes.STRING,
         mount: DataTypes.INTEGER,
-        date: DataTypes.DATE,
+        date: DataTypes.DATEONLY,
     };
     let config = {
         tableName: "operations",

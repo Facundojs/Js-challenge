@@ -18,12 +18,22 @@ module.exports = {
     },
     once: async (req, res) => {
         try {
-            const { id } = req.body;
+            const { id, userId } = req.body;
+            console.log('ONCE BODY: ', req.body);
             const operation = await db.Operation.findByPk(id);
             if (operation) {
-                res.json({
-                    operation
-                })
+                if (operation.userId === userId) {
+                    console.log('SIIIIIIIIIIIIIIIIIIII');
+                    res.json({
+                        msg: "You are able to acces this op",
+                        operation,
+                    })
+                } else {
+                    console.log("NOOOOOOOOOOOOOO");
+                    res.json({
+                        msg: "You cant acces to this info"
+                    })
+                }
             } else {
                 res.json({
                     error: {
