@@ -73,9 +73,12 @@ export default function OperationsTable({ operationsData, operationsTotal }) {
                                             </td>
                                         </tr>
                                 )
-                            })}
+                                })}
                         </tbody>
                     </table>
+                    <div>
+                        <Link to="/newoperation">New operation</Link>
+                    </div>
                 </div>
                 <hr />
                 <h3>Total: <b>{ operationsTotal }</b></h3>
