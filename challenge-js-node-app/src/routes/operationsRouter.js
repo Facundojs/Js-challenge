@@ -4,9 +4,6 @@ const storeValidations = require("../middlewares/saveOperationValidation");
 const updateValidation = require("../middlewares/updateOperation");
 const operationsController = require('../controllers/operationsController');
 
-router.get('/', operationsController.all)
-
-
 // CRUD
 router.post('/all', operationsController.all);
 router.post('/once', operationsController.once);

@@ -10,12 +10,6 @@ class Operation{
     }
 }
 module.exports = {
-    all: (req, res) => {
-        db.Operation.findAll()
-            .then((dbres) => {
-            res.send(dbres)
-        })
-    },
     once: async (req, res) => {
         try {
             const { id, userId } = req.body;
@@ -92,7 +86,18 @@ module.exports = {
                 },
             })
             if (operations) {
-                res.json(operations)
+                let accum = 0;
+                operations.forEach((element) => {
+                    if (element.typeId == 1) {
+                        return accum += element.mount
+                    } else if(element.typeId == 2){
+                        return accum -= element.mount
+                    }
+                })
+                res.json({
+                    operations,
+                    total: accum
+                })
             }
         } catch (err) {
             res.json({

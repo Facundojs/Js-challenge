@@ -19,6 +19,9 @@ export default function UserLoggedNav({user}) {
             <NavLink className="nav-link" activeClassName="selected" to="/newoperation">
                 New operation 
             </NavLink>
+            <NavLink className="nav-link" activeClassName="selected" to="/alloperations">
+                All operations 
+            </NavLink>
         </>         
     )
 }

@@ -13,6 +13,7 @@ import Register from './pages/Register'
 import NewOperation from './pages/NewOperation'
 import NotFound from './pages/NotFound'
 import ModifyOperation from './components/ModifyOperation'
+import AllOperations from './pages/AllOperations'
 export default function App() {
   return (
     <Router>
@@ -24,6 +25,7 @@ export default function App() {
               <Route path="/login" component={Login}/>
               <Route path="/register" component={Register}/>
               <Route path="/newoperation" component={NewOperation}/>
+              <Route path="/alloperations" component={AllOperations}/>
               <Route path="/modifyoperation/:id" component={ModifyOperation}/>
               <Route component={NotFound}/>
             </Switch>
