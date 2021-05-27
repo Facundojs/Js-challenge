@@ -41,7 +41,7 @@ export default function NewOperation() {
         if (newOp.errors) {
             return setSaveErrors(newOp.errors.errors)
         } else {
-            setFetchFedback('The operation was succefully saved')
+            window.location.href = '/'
         }
     }
     return (
@@ -62,7 +62,7 @@ export default function NewOperation() {
             >
                 <div className="form-floating mb-3 w-75">
                     <input ref={concept}
-                     type="text" className="form-control" id="floatingInput" placeholder="name@example.com"/>
+                     type="text" className="form-control" id="floatingInput" placeholder="Write once concept"/>
                     <label htmlFor="floatingInput">Concept</label>
                 </div>
                 <div className="input-group mb-3 w-75">

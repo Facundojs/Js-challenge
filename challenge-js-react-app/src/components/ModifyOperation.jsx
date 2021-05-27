@@ -1,12 +1,41 @@
-import { useState, useRef } from 'react'
-
+import { useState, useRef, useEffect } from 'react'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 export default function ModifyOperation(props) {
-    const [userLogged, setUserLogged] = useState();
+    const [fetchFeedback, setFetchFeedback] = useState();
     const [mountFeedback, setMountFeedback] = useState();
+    const urlOpId = props.match.params.id;
     const PUT_URL = "http://localhost:3010/api/v1/operations/update";
+    const GET_OLD_DATA_URL = "http://localhost:3010/api/v1/operations/once"
     const concept = useRef();
     const mount = useRef();
     const date = useRef();
+    const userCookie = cookies.get('userLogged');
+    useEffect(() => {
+        if (!userCookie) {
+            window.location.href = '/';
+        }
+    })
+    useEffect(() => {
+        oldData(urlOpId, GET_OLD_DATA_URL);
+    }, [urlOpId])
+    async function oldData(id, url) {
+        const body = JSON.stringify({
+            id
+        });
+        const fetchConfig = {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body
+        };
+        const fetchRes = await fetch(url, fetchConfig);
+        const fetchItem = await fetchRes.json();
+        concept.current.value = fetchItem.operation.concept;
+        mount.current.value = fetchItem.operation.mount;
+    }
     async function apiUpdate(opId, concept, mount, date, fetchUrl) {
         const body = JSON.stringify({
             id: opId,
@@ -22,10 +51,14 @@ export default function ModifyOperation(props) {
             },
             body:body
         };
-        await fetch(fetchUrl, fetchConfig)
-        window.location.href = '/'
+        const fetchRes = await fetch(fetchUrl, fetchConfig);
+        const fetchState = await fetchRes.json()
+        if (fetchState.errors) {
+            setFetchFeedback(fetchState.errors)
+        } else {
+            window.location.href = '/';
+        }
     }
-
     return (
         <div className="container-lg mt-4 bg-light rounded border border-secondary w-50">
             <form 
@@ -73,9 +106,20 @@ export default function ModifyOperation(props) {
                         <i className="fas fa-calendar-alt"></i>
                     </span>
                     <input ref={date}
-                        type="date" className="form-control" />
+                        type="date" className="form-control"/>
                 </div>
+                {
+                    fetchFeedback &&
+                    <div className="container w-75 mx-0 mt-3 validations alert alert-danger centered">
 
+                        {fetchFeedback.errors.map((err, key) => {
+                            return (
+                                <span key={key} className="w-50 p-2">{`${err.msg}`}</span>
+                                )
+                            
+                        })}
+                    </div>
+                    }
                 <div className="input-group mt-3 w-75">                  
                     <button className="btn btn-sm p-2 btn-primary w-100" type="submit">Save</button>
                 </div>

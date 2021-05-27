@@ -39,6 +39,7 @@ export default function Login() {
             getUser(token, GET_USER_URL)
 
         } catch (err) {
+            console.log('Error');
             setError('There was an error in the conection')
         }
     }

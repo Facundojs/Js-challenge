@@ -11,7 +11,7 @@ export default function UserLoggedNav({user}) {
                 className="nav-link" activeClassName="selected" to="/"
                 onClick={() => {
                     cookies.remove('userLogged');
-                    window.location.reload();
+                    window.location.href = '/';
                 }}
                 >
                 Logout

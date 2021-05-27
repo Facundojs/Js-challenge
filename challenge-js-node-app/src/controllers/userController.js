@@ -5,7 +5,7 @@ module.exports = {
     loginProcess: async (req, res) => {
         try{
         const { email, password } = req.body;
-        const user = await db.User.findOne({ where: { email }, include: 'operations' });
+        const user = await db.User.findOne({ where: { email }});
         if(!user){
             res.json({
                 error:{

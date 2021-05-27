@@ -28,8 +28,8 @@ export default function OperationsTable({ operationsData, operationsTotal }) {
     } else {
         return (
             <>
-                <div class="table-responsive">
-                    <table class="table table-striped">
+                <div className="table-responsive">
+                    <table className="table table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -42,9 +42,9 @@ export default function OperationsTable({ operationsData, operationsTotal }) {
                         </thead>
                         <tbody>
                             {operationsData &&
-                                operationsData.map((elemento) => {
+                                operationsData.map((elemento, i) => {
                                     return (
-                                        <tr>
+                                        <tr key={i}>
                                             <th scope="row">{ elemento.id }</th>
                                             <td>{ elemento.concept }</td>
                                             <td>{ elemento.mount }</td>

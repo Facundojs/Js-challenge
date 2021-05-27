@@ -16,6 +16,30 @@ module.exports = {
             res.send(dbres)
         })
     },
+    once: async (req, res) => {
+        try {
+            const { id } = req.body;
+            const operation = await db.Operation.findByPk(id);
+            if (operation) {
+                res.json({
+                    operation
+                })
+            } else {
+                res.json({
+                    error: {
+                        msg: "Couldn't find Op. in db"
+                    },
+                })
+            }
+        } catch (err) {
+            res.json({
+                error: {
+                    msg: "There was an error",
+                    err
+                }
+            })
+        }
+    },
     store: async (req, res) => {
         let resultValidation = validationResult(req);
         try {
@@ -101,28 +125,43 @@ module.exports = {
         }
     },
     update: async (req, res) => {
-        const {
-            concept,
-            mount,
-            date
-        } = req.body;
-        const id = Number(req.body.id)
-        console.log("UPDATE BODY: ", req.body)
-        
-        const operationToUpdate = await db.Operation.findByPk(req.body.id);
-        
-        if (operationToUpdate) {
-            const updatedOperation = await db.Operation.update({
-                concept: concept,
-                mount: mount,
-                date: date
-            }, {
-                where: {id: Number(id)}
-            })
+        try {            
+            let resultValidation = validationResult(req);
+            if (resultValidation.errors.length > 0) {
+                res.json({
+                    errors: resultValidation
+                })
+            } else {
+                const {
+                    concept,
+                    mount,
+                    date
+                } = req.body;
+                const id = Number(req.body.id)
+                console.log("UPDATE BODY: ", req.body)
+                
+                const operationToUpdate = await db.Operation.findByPk(req.body.id);
+                
+                if (operationToUpdate) {
+                    const updatedOperation = await db.Operation.update({
+                        concept: concept,
+                        mount: mount,
+                        date: date
+                    }, {
+                        where: {id: Number(id)}
+                    })
+                    res.json({
+                        updatedOperation
+                    })
+                }
+            }
+        } catch (err) {
             res.json({
-                updatedOperation
+                error:{
+                    msg:"There was an error"
+                }
             })
-        }
+        } 
     },
     destroy:(req, res) => {
         console.log("DELETE METHOD")
