@@ -15,7 +15,8 @@
 
  También deberemos generar la base de datos donde se harán las peticiones y se almacenará la información.
  En este caso la generaremos a través de migraciones y seeders utilizando comandos nativos de Sequelize.
-
+ 
+ Para que estas corran correctamente es necesario también tener el *cli de sequelize*.
 ### Primera vez
 
     
@@ -23,6 +24,9 @@
                                     // de ReactJS como NodeJS. Esta última es la que nos interesa por ahora.
 
     cd challenge-js-node-app        // Accedemos a la carpeta específica de la aplicación de NodeJS.
+                                    
+    npm install sequelize-cli -g    // Instalamos el cli de sequelize que generará la base                            
+                                    // de datos a traves de migraciones.
 
     npm i                           // Instalamos las dependencías de la API.
      
